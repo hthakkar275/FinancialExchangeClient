@@ -8,10 +8,11 @@ public class FinancialExchangeClientApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		basicTwoOrderTest();
+		//basicTwoOrder();
+		manyOrdersSingleProductSlow();
 	}
 
-	static void basicTwoOrderTest() {
+	static void basicTwoOrder() {
 		FinancialExchangeClient client = 
 				new FinancialExchangeClient("http://localhost:8080");
 
@@ -23,4 +24,18 @@ public class FinancialExchangeClientApplication {
 			e.printStackTrace();
 		} 
 	}
+	
+	static void manyOrdersSingleProductSlow() {
+		FinancialExchangeClient client = 
+				new FinancialExchangeClient("http://localhost:8080");
+
+		try {
+			client.addEquities("./src/main/resources/Products.csv");
+			client.addBrokers("./src/main/resources/Participants.csv");
+			client.addOrders("./src/main/resources/ManyOrdersSingleProduct.csv");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
+
 }
