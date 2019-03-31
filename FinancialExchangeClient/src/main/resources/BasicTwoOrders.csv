@@ -1,0 +1,4 @@
+side,quantity,price,type,longevity,productId,participantId
+String,Integer,Decimal,String,String,Integer,Integer
+BUY,100,12.50,LIMIT,DAY,1,1
+SELL,300,12.50,LIMIT,DAY,1,2

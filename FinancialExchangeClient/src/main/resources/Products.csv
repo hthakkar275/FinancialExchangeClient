@@ -1,0 +1,7 @@
+symbol,description,productType
+String,String,String
+AAPL,Aaple,EQUITY
+INTC,Intel,EQUITY
+BA,Boeing,EQUITY
+PFE,Pfeizer,EQUITY
+JPM,JP Morgan Chase,EQUITY
