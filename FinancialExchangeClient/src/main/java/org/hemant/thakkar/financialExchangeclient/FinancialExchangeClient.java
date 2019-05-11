@@ -85,7 +85,7 @@ public class FinancialExchangeClient {
 	public void addEquities(String dataFile) {
 		try {	
 			System.out.println("========== Add Equities ===========");
-			String url = this.basePath + "/product/equity";
+			String url = this.basePath + "/product/equity/";
 			doPost(url, dataFile);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,7 +95,7 @@ public class FinancialExchangeClient {
 	public void addBrokers(String dataFile) {
 		try {	
 			System.out.println("========== Add Brokers ===========");
-			String url = this.basePath + "/participant/broker";
+			String url = this.basePath + "/participant/broker/";
 			doPost(url, dataFile);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,7 +105,7 @@ public class FinancialExchangeClient {
 	public void addOrders(String dataFile) {
 		try {	
 			System.out.println("========== Add Orders ===========");
-			String url = this.basePath + "/order";
+			String url = this.basePath + "/order/";
 			doPost(url, dataFile);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,7 +116,15 @@ public class FinancialExchangeClient {
 		List<String> lines = Files.lines(Paths.get(dataFile)).collect(Collectors.toList());
 		String headerLine = lines.remove(0);
 		String headerTypeLine = lines.remove(0);
-		lines.stream().forEach(s -> doPost(apiEndpoint, headerLine, headerTypeLine, s));
+		lines.stream().forEach(s -> {
+			doPost(apiEndpoint, headerLine, headerTypeLine, s);
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 	}
 
 	private void doPost(String apiEndpoint, String headerLine, String headerTypeLine, String dataLine) {
